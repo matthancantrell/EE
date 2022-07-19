@@ -17,25 +17,22 @@ namespace Engine
 		}
 	}
 
-	////////////////////////////////////////////////////////
 	void Model::Load(const std::string& filename)
 	{
 		std::string buffer;
 
 		Engine::ReadFile(filename, buffer);
-		color_.r = 255;
-		color_.g - 255;
-		color_.b = 255;
-		color_.a = 255;
 
+		// Read Color
 		std::istringstream stream(buffer);
+		stream >> color_;
+
+		// Read Number of Points
 		std::string line;
 		std::getline(stream, line);
-
-		//get number of points
 		size_t numPoints = std::stoi(line);
 
-		//// read model points
+		//// Read Model Points
 		for (size_t i = 0; i < numPoints; i++)
 		{
 			Vector2 point;

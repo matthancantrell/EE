@@ -1,6 +1,7 @@
 #include "Renderer/Model.h"
 #include "Player.h"
 #include "Engine.h"
+#include <chrono>
 #include <iostream>
 #include <vector>
 
@@ -9,6 +10,9 @@ using namespace std;
 
 int main()
 {
+	// Time
+
+
 	Engine::SetFilePath("../Assets");
 
 	// Create Actor
@@ -38,21 +42,22 @@ int main()
 	//Memory Init
 	Engine::InitializeMemory();
 
-	Engine::Renderer renderer;
-
 	// Initialize Our Major Systems
-	renderer.Initialize();
+	Engine::renderer_g.Initialize();
 	Engine::inputSystem_g.Initialize();
 
 	// Create A Window And Set Background Color
-	renderer.CreateWindow("Engine", 800, 600); // Creates the window with parameters
-	renderer.SetClearColor(Engine::Color{ 50, 50, 50, 255 });
+	Engine::renderer_g.CreateWindow("Engine", 800, 600); // Creates the window with parameters
+	Engine::renderer_g.SetClearColor(Engine::Color{ 50, 50, 50, 255 });
 
 	bool quit = false;
 	while (!quit)
 	{
 		// Update
 		Engine::inputSystem_g.Update();
+		Engine::timer_g.Tick();
+
+		std::cout << Engine::timer_g.deltaTime << std::endl;
 
 		//Keys
 		if (Engine::inputSystem_g.GetKeyState(Engine::key_esc) == Engine::InputSystem::KeyState::Pressed)
@@ -64,12 +69,12 @@ int main()
 		player.Update();
 
 		// Render
-		renderer.BeginFrame();
+		Engine::renderer_g.BeginFrame();
 
-		player.Draw(renderer);
+		player.Draw(Engine::renderer_g);
 
-		renderer.EndFrame();
+		Engine::renderer_g.EndFrame();
 	}
 
-	renderer.ShutDown();
+	Engine::renderer_g.ShutDown();
 }

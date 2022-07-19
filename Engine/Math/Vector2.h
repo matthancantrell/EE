@@ -66,7 +66,6 @@ namespace Engine
 		bool operator != (const Vector2& v) const { return (this->x != v.x || this->y != v.y); }
 	};
 
-	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	inline std::istream& operator >> (std::istream& stream, Vector2& v)
 	{
 		std::string line;

@@ -7,12 +7,12 @@ void Player::Update()
 	// Rotate Left/Right
 	if (Engine::inputSystem_g.GetKeyState(Engine::key_left) == Engine::InputSystem::KeyState::Held)
 	{
-		transform_.rotation -= 0.05f;
+		transform_.rotation -= (0.05f * Engine::timer_g.deltaTime);
 	}
 
 	if (Engine::inputSystem_g.GetKeyState(Engine::key_right) == Engine::InputSystem::KeyState::Held)
 	{
-		transform_.rotation += 0.05f;
+		transform_.rotation += (0.05f * Engine::timer_g.deltaTime);
 	}
 
 	// Move Forward
@@ -43,7 +43,7 @@ void Player::Update()
 	Engine::Vector2 direction{ 1,0 };
 	direction = Engine::Vector2::Rotate(direction, transform_.rotation);
 
-	Engine::Vector2 velocity = direction * speed_;
+	Engine::Vector2 velocity = direction * (speed_ * Engine::timer_g.deltaTime);
 
 	transform_.position += velocity;
 }
