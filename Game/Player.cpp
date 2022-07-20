@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Engine.h"
+#include "Bullet.h"
 
 void Player::Update()
 {
@@ -7,12 +8,12 @@ void Player::Update()
 	// Rotate Left/Right
 	if (Engine::inputSystem_g.GetKeyState(Engine::key_left) == Engine::InputSystem::KeyState::Held)
 	{
-		transform_.rotation -= (0.05f * Engine::timer_g.deltaTime);
+		transform_.rotation -= (3.0f * Engine::timer_g.deltaTime);
 	}
 
 	if (Engine::inputSystem_g.GetKeyState(Engine::key_right) == Engine::InputSystem::KeyState::Held)
 	{
-		transform_.rotation += (0.05f * Engine::timer_g.deltaTime);
+		transform_.rotation += (3.0f * Engine::timer_g.deltaTime);
 	}
 
 	// Move Forward
@@ -35,9 +36,9 @@ void Player::Update()
 	//}
 
 	// Face Target
-	Engine::Vector2 target = Engine::inputSystem_g.GetMousePosition();
-	target = target - transform_.position; // Direction Vector Towards
-	transform_.rotation = target.GetAngle();
+	//Engine::Vector2 target = Engine::inputSystem_g.GetMousePosition();
+	//target = target - transform_.position; // Direction Vector Towards
+	//transform_.rotation = target.GetAngle();
 
 	// Thrust Code
 	Engine::Vector2 direction{ 1,0 };
@@ -46,4 +47,11 @@ void Player::Update()
 	Engine::Vector2 velocity = direction * (speed_ * Engine::timer_g.deltaTime);
 
 	transform_.position += velocity;
+
+	// Fire Bullet
+	if (Engine::inputSystem_g.GetKeyState(Engine::key_space) == Engine::InputSystem::KeyState::Held)
+	{
+		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(model_, transform_);
+		scene_->Add(std::move(bullet));
+	}
 }

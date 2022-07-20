@@ -4,6 +4,8 @@
 
 namespace Engine
 {
+	class Scene;
+
 	class Actor : public GameObject
 	{
 	public:
@@ -13,10 +15,9 @@ namespace Engine
 		virtual void Update() override {}
 		virtual void Draw(Renderer& renderer);
 
-	private:
+		Scene* scene_;
 
 	protected:
 		Model model_;
-
 	};
 }

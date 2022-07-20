@@ -18,6 +18,7 @@ namespace Engine
 	}
 	void Scene::Add(std::unique_ptr<Actor> actor)
 	{
+		actor->scene_ = this;
 		actors_.push_back(std::move(actor));
 	}
 }

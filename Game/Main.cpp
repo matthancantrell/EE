@@ -3,6 +3,8 @@
 #include "Engine.h"
 #include <iostream>
 #include <vector>
+#include <list>
+#include <algorithm>
 
 using namespace std;
 // DEPENDENCIES
@@ -14,12 +16,7 @@ int main()
 
 	// Set File Path to Pull Models
 	Engine::SetFilePath("../Assets");
-
-	array<int, 3> anumbers = { 4, 5, 6 }; // on the stack {4,5,6}
-	anumbers[0] = 5;
-
-	vector<int> numbers = { 3, 5, 6 }; // new = on the heap
-
+	
 	Engine::Scene scene;
 
 	// Create Actor
@@ -70,8 +67,6 @@ int main()
 		// Update
 		Engine::inputSystem_g.Update();
 		Engine::timer_g.Tick();
-
-		std::cout << Engine::timer_g.deltaTime << std::endl;
 
 		//Keys
 		if (Engine::inputSystem_g.GetKeyState(Engine::key_esc) == Engine::InputSystem::KeyState::Pressed)
