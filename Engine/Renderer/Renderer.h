@@ -30,7 +30,12 @@ namespace Engine
 		void DrawPoint(float x, float y); // Draws a point using floats
 		void DrawPoint(const Vector2& v, const Color& color); // 
 
+		int GetWidth_() { return width_; }
+		int GetHeight_() { return height_; }
+
 	private:
+		int width_ = 0;
+		int height_ = 0;
 
 		Color clearColor_{ 0, 0, 0, 255 };
 

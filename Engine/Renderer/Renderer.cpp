@@ -14,7 +14,10 @@ namespace Engine
 	}
 	void Renderer::CreateWindow(const char* title, int width, int height)
 	{
-		window_ = SDL_CreateWindow(title, 100, 100, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+		width_ = width;
+		height_ = height;
+
+		window_ = SDL_CreateWindow(title, 100, 100, width_, height_, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 		renderer_ = SDL_CreateRenderer(window_, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED);
 	}
 	void Renderer::BeginFrame()

@@ -10,12 +10,12 @@ namespace Engine
 	{
 	public:
 		Actor() = default;
-		Actor(Model model, Transform transform) : GameObject{ transform }, model_{ model }  {}
+		Actor(const Model& model,const Transform& transform) : GameObject{ transform }, model_{ model }  {}
 
 		virtual void Update() override {}
 		virtual void Draw(Renderer& renderer);
 
-		Scene* scene_;
+		Scene* scene_ = nullptr;
 
 	protected:
 		Model model_;

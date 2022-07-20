@@ -23,22 +23,30 @@ void Player::Update()
 		speed_ = maxSpeed_;
 	}
 
+	// Fire Bullet
+	if (Engine::inputSystem_g.GetKeyState(Engine::key_space) == Engine::InputSystem::KeyState::Held)
+	{
+		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(model_, transform_);
+		scene_->Add(std::move(bullet));
+	}
+
 	// Mouse
+/*
+	if (Engine::inputSystem_g.GetButtonState(Engine::button_left) == Engine::InputSystem::KeyState::Pressed)
+	{
+		std::cout << "Left Mouse Click!" << endl;
+	}
 
-	//if (Engine::inputSystem_g.GetButtonState(Engine::button_left) == Engine::InputSystem::KeyState::Pressed)
-	//{
-	//	std::cout << "Left Mouse Click!" << endl;
-	//}
-
-	//if (Engine::inputSystem_g.GetButtonState(Engine::button_right) == Engine::InputSystem::KeyState::Pressed)
-	//{
-	//	std::cout << "Mouse Position: (" << Engine::inputSystem_g.GetMousePosition().x << ", " << inputSystem.GetMousePosition().y << ")" << endl;
-	//}
+	if (Engine::inputSystem_g.GetButtonState(Engine::button_right) == Engine::InputSystem::KeyState::Pressed)
+	{
+		std::cout << "Mouse Position: (" << Engine::inputSystem_g.GetMousePosition().x << ", " << inputSystem.GetMousePosition().y << ")" << endl;
+	}
 
 	// Face Target
-	//Engine::Vector2 target = Engine::inputSystem_g.GetMousePosition();
-	//target = target - transform_.position; // Direction Vector Towards
-	//transform_.rotation = target.GetAngle();
+	Engine::Vector2 target = Engine::inputSystem_g.GetMousePosition();
+	target = target - transform_.position; // Direction Vector Towards
+	transform_.rotation = target.GetAngle();
+*/
 
 	// Thrust Code
 	Engine::Vector2 direction{ 1,0 };
@@ -48,10 +56,5 @@ void Player::Update()
 
 	transform_.position += velocity;
 
-	// Fire Bullet
-	if (Engine::inputSystem_g.GetKeyState(Engine::key_space) == Engine::InputSystem::KeyState::Held)
-	{
-		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(model_, transform_);
-		scene_->Add(std::move(bullet));
-	}
+
 }
