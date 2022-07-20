@@ -1,4 +1,3 @@
-#include "Renderer/Model.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "Engine.h"
@@ -39,17 +38,14 @@ int main()
 	};
 	//Engine::Model model(points, Engine::Color{ 255, 255, 255, 255 });
 
-	Engine::Model model;
-	model.Load("Model.txt");
-
-	std::unique_ptr<Player> player = std::make_unique<Player>(model, transform);
+	std::unique_ptr<Player> player = std::make_unique<Player>(Engine::Model{ "Player.txt" }, transform);
 	scene.Add(std::move(player));
 
-	for (size_t i = 0; i < 20; i++)
+	for (size_t i = 0; i < 5; i++)
 	{
 		transform.position.x = Engine::RandomFloat(800);
 		transform.position.y = Engine::RandomFloat(600);
-		std::unique_ptr<Enemy> player = std::make_unique<Enemy>(model, transform);
+		std::unique_ptr<Enemy> player = std::make_unique<Enemy>(Engine::Model { "Enemy.txt" }, transform);
 		scene.Add(std::move(player));
 
 	}

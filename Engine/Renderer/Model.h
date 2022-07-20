@@ -1,5 +1,6 @@
 #pragma once
 #include "Renderer.h"
+
 #include <vector>
 #include <string>
 
@@ -11,7 +12,8 @@ namespace Engine
 	public:
 
 		Model() = default;
-		Model(const std::vector<Engine::Vector2>& points, const Engine::Color& color) : points_{ points }, color_{ color }{}
+		Model(const std::vector<Engine::Vector2>& points, const Engine::Color& color) : points_{ points }, color_{ color } {}
+		Model(const std::string& filename);
 
 		void Draw(Renderer& renderer, const Vector2& position, float angle, float scale);
 

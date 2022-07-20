@@ -26,7 +26,7 @@ void Player::Update()
 	// Fire Bullet
 	if (Engine::inputSystem_g.GetKeyState(Engine::key_space) == Engine::InputSystem::KeyState::Held)
 	{
-		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(model_, transform_);
+		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(Engine::Model { "Bullet.txt" }, transform_);
 		scene_->Add(std::move(bullet));
 	}
 

@@ -6,6 +6,7 @@
 
 namespace Engine
 {
+
 	void Model::Draw(Renderer& renderer, const Vector2& position, float angle, float scale)
 	{
 
@@ -40,6 +41,10 @@ namespace Engine
 			stream >> point;
 			points_.push_back(point);
 		}
+	}
 
+	Model::Model(const std::string& filename)
+	{
+		Load(filename);
 	}
 }
