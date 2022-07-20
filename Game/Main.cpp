@@ -38,6 +38,7 @@ int main()
 	};
 	//Engine::Model model(points, Engine::Color{ 255, 255, 255, 255 });
 
+
 	std::unique_ptr<Player> player = std::make_unique<Player>(Engine::Model{ "Player.txt" }, transform);
 	scene.Add(std::move(player));
 
@@ -60,6 +61,20 @@ int main()
 	// Create A Window And Set Background Color
 	Engine::renderer_g.CreateWindow("Engine", 800, 600); // Creates the window with parameters
 	Engine::renderer_g.SetClearColor(Engine::Color{ 50, 50, 50, 255 });
+
+	std::string word = "{ Color.r, Color.b, Color.g }";
+	cout << word << endl;
+
+	std::string sub;
+	sub = word.substr(word.find("{") + 1, word.find(",") - (word.find("{") + 1));
+
+	cout << "Substring:" << sub << endl;
+
+	word = word.substr(word.find(",") + 1);
+	cout << word << endl;
+
+	word = word.substr(word.find(",") + 1);
+	cout << word << endl;
 
 	bool quit = false;
 	while (!quit)
