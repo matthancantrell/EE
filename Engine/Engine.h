@@ -9,6 +9,8 @@
 #include "Math/MathUtils.h"
 #include "Math/Random.h"
 
+#include "Framework/Scene.h"
+
 namespace Engine
 {
 	extern InputSystem inputSystem_g;

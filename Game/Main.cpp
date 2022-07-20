@@ -1,7 +1,6 @@
 #include "Renderer/Model.h"
 #include "Player.h"
 #include "Engine.h"
-#include <chrono>
 #include <iostream>
 #include <vector>
 
@@ -10,10 +9,18 @@ using namespace std;
 
 int main()
 {
-	// Time
+	//Memory Init
+	Engine::InitializeMemory();
 
-
+	// Set File Path to Pull Models
 	Engine::SetFilePath("../Assets");
+
+	array<int, 3> anumbers = { 4, 5, 6 }; // on the stack {4,5,6}
+	anumbers[0] = 5;
+
+	vector<int> numbers = { 3, 5, 6 }; // new = on the heap
+
+	Engine::Scene scene;
 
 	// Create Actor
 	// Transform
@@ -37,10 +44,17 @@ int main()
 	Engine::Model model;
 	model.Load("Model.txt");
 
-	Player player{ model, transform };
+	for (size_t i = 0; i < 20; i++)
+	{
+		transform.position.x = Engine::RandomFloat(800);
+		transform.position.y = Engine::RandomFloat(600);
+		std::unique_ptr<Player> player = std::make_unique<Player>(model, transform);
+		scene.Add(std::move(player));
 
-	//Memory Init
-	Engine::InitializeMemory();
+	}
+
+	// Player player{ model, transform };
+
 
 	// Initialize Our Major Systems
 	Engine::renderer_g.Initialize();
@@ -66,12 +80,13 @@ int main()
 		}
 
 		//Update Game Objects
-		player.Update();
+		scene.Update();
 
 		// Render
 		Engine::renderer_g.BeginFrame();
 
-		player.Draw(Engine::renderer_g);
+		scene.Draw(Engine::renderer_g);
+		//player.Draw(Engine::renderer_g);
 
 		Engine::renderer_g.EndFrame();
 	}
