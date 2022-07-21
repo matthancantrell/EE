@@ -14,10 +14,20 @@ namespace Engine
 
 		virtual void Update() override {}
 		virtual void Draw(Renderer& renderer);
-
-		Scene* scene_ = nullptr;
+		
+		friend class Scene;
 
 	protected:
+
+		// State
+		bool destroy_ = false;
+
+		// Physics
+		Vector2 velocity_;
+		float damping_ = 1;
+
+		// Object
+		Scene* scene_ = nullptr;
 		Model model_;
 	};
 }

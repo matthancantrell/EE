@@ -12,13 +12,13 @@ namespace Engine
 
 		virtual void Update() = 0;
 
-		Transform& GetTransform() { return transform_;  }
+		Transform transform_;
 
 	private:
 
 	protected:
 
-		Transform transform_;
+		
 
 	};
 }

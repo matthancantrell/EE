@@ -11,5 +11,5 @@ public:
 
 private:
 	float speed_{ 0 };
-	float maxSpeed_{ 100 };
+	float maxSpeed_{ 500 };
 };

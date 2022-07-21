@@ -12,4 +12,5 @@ public:
 
 private:
 	float speed_ = 200;
+	float lifespan_ = 5;
 };

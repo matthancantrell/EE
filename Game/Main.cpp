@@ -36,8 +36,6 @@ int main()
 		{ 7.00f, 0.00f }
 
 	};
-	//Engine::Model model(points, Engine::Color{ 255, 255, 255, 255 });
-
 
 	std::unique_ptr<Player> player = std::make_unique<Player>(Engine::Model{ "Player.txt" }, transform);
 	scene.Add(std::move(player));
@@ -46,9 +44,8 @@ int main()
 	{
 		transform.position.x = Engine::RandomFloat(800);
 		transform.position.y = Engine::RandomFloat(600);
-		std::unique_ptr<Enemy> player = std::make_unique<Enemy>(Engine::Model { "Enemy.txt" }, transform);
-		scene.Add(std::move(player));
-
+		std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(Engine::Model { "Enemy.txt" }, transform);
+		scene.Add(std::move(enemy));
 	}
 
 	// Player player{ model, transform };
@@ -62,20 +59,6 @@ int main()
 	Engine::renderer_g.CreateWindow("Engine", 800, 600); // Creates the window with parameters
 	Engine::renderer_g.SetClearColor(Engine::Color{ 50, 50, 50, 255 });
 
-	std::string word = "{ Color.r, Color.b, Color.g }";
-	cout << word << endl;
-
-	std::string sub;
-	sub = word.substr(word.find("{") + 1, word.find(",") - (word.find("{") + 1));
-
-	cout << "Substring:" << sub << endl;
-
-	word = word.substr(word.find(",") + 1);
-	cout << word << endl;
-
-	word = word.substr(word.find(",") + 1);
-	cout << word << endl;
-
 	bool quit = false;
 	while (!quit)
 	{
@@ -84,7 +67,7 @@ int main()
 		Engine::timer_g.Tick();
 
 		//Keys
-		if (Engine::inputSystem_g.GetKeyState(Engine::key_esc) == Engine::InputSystem::KeyState::Pressed)
+		if (Engine::inputSystem_g.onKeyEsc(Engine::InputSystem::KeyState::Pressed))
 		{
 			quit = true;
 		}

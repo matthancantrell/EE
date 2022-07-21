@@ -1,12 +1,23 @@
 #include "Scene.h"
+#include <algorithm>
 
 namespace Engine
 {
 	void Scene::Update()
 	{
-		for (auto& actor : actors_)
+
+		auto iter = actors_.begin();
+		while (iter != actors_.end()) 
 		{
-			actor->Update();
+			(*iter)->Update();
+			if ((*iter)->destroy_)
+			{
+				iter = actors_.erase(iter);
+			}
+			else
+			{
+				iter++;
+			}
 		}
 	}
 	void Scene::Draw(Renderer& renderer)
