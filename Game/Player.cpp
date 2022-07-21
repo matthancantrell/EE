@@ -1,7 +1,6 @@
 #include "Player.h"
 #include "Engine.h"
 #include "Bullet.h"
-#include <iostream>
 
 void Player::Update()
 {

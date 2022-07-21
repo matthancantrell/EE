@@ -3,17 +3,18 @@
 
 void Bullet::Update()
 {
-	// Calculate Velocity
+	// Lifespan
 	lifespan_ -= Engine::timer_g.deltaTime;
 	if (lifespan_ <= 0) destroy_ = true;
 
+	// Calculate Velocity
 	Engine::Vector2 direction{ 1,0 };
 	direction = Engine::Vector2::Rotate(direction, transform_.rotation);
 
-	Engine::Vector2 velocity = direction * (speed_ * Engine::timer_g.deltaTime);
+	velocity_ = direction * (speed_ * Engine::timer_g.deltaTime);
+	transform_.position += velocity_;
 
-	transform_.position += velocity;
-
+	// Wrap
 	if (transform_.position.x > Engine::renderer_g.GetWidth_()) transform_.position.x = 0;
 	if (transform_.position.x < 0) transform_.position.x = (float)Engine::renderer_g.GetWidth_();
 

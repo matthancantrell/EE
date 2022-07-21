@@ -1,10 +1,6 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Engine.h"
-#include <iostream>
-#include <vector>
-#include <list>
-#include <algorithm>
 
 using namespace std;
 // DEPENDENCIES
@@ -26,17 +22,6 @@ int main()
 	transform.rotation = 0;
 	transform.scale = 5;
 
-	// Model
-	vector<Engine::Vector2> points
-	{
-		{ 7.00f, 0.00f },
-		{ -3.00f, -5.00f },
-		{ 0.00f, 0.00f },
-		{ -3.00f, 5.00f },
-		{ 7.00f, 0.00f }
-
-	};
-
 	std::unique_ptr<Player> player = std::make_unique<Player>(Engine::Model{ "Player.txt" }, transform);
 	scene.Add(std::move(player));
 
@@ -47,9 +32,6 @@ int main()
 		std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(Engine::Model { "Enemy.txt" }, transform);
 		scene.Add(std::move(enemy));
 	}
-
-	// Player player{ model, transform };
-
 
 	// Initialize Our Major Systems
 	Engine::renderer_g.Initialize();
@@ -79,7 +61,6 @@ int main()
 		Engine::renderer_g.BeginFrame();
 
 		scene.Draw(Engine::renderer_g);
-		//player.Draw(Engine::renderer_g);
 
 		Engine::renderer_g.EndFrame();
 	}

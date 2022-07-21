@@ -10,7 +10,7 @@ namespace Engine
 		Time() : startTimePoint_{ clock::now() }, frameTimePoint_{ clock::now() } {}
 
 		void Tick();
-		void Reser() { startTimePoint_ = clock::now(); }
+		void Reset() { startTimePoint_ = clock::now(); }
 
 		using clock = std::chrono::high_resolution_clock;
 		using clock_duration = clock::duration;

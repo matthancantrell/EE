@@ -35,9 +35,9 @@ void Enemy::Update()
 	Engine::Vector2 direction{ 1,0 };
 	direction = Engine::Vector2::Rotate(direction, transform_.rotation);
 
-	Engine::Vector2 velocity = direction * (speed_ * Engine::timer_g.deltaTime);
+	velocity_ = direction * (speed_ * Engine::timer_g.deltaTime);
 
-	transform_.position += velocity;
+	transform_.position += velocity_;
 
 	// Screen Wrapping
 	if (transform_.position.x > Engine::renderer_g.GetWidth_()) transform_.position.x = 0;

@@ -40,21 +40,21 @@ namespace Engine
 		Vector2 operator * (const Vector2& v) const { return Vector2{ this->x * v.x, this->y * v.y }; }
 
 		//Vector2 = Vector2 + float
-		Vector2 operator += (const Vector2& v) { this->x += v.x, this->y += v.y; return *this; }
-		Vector2 operator -= (const Vector2& v) { this->x -= v.x, this->y -= v.y; return *this; }
-		Vector2 operator /= (const Vector2& v) { this->x /= v.x, this->y /= v.y; return *this; }
-		Vector2 operator *= (const Vector2& v) { this->x *= v.x, this->y *= v.y; return *this; }
-
-		//Assignment Operators
 		Vector2 operator + (float s) const { return Vector2{ this->x + s, this->y + s }; }
 		Vector2 operator - (float s) const { return Vector2{ this->x - s, this->y - s }; }
 		Vector2 operator / (float s) const { return Vector2{ this->x / s, this->y / s }; }
 		Vector2 operator * (float s) const { return Vector2{ this->x * s, this->y * s }; }
 
-		Vector2 operator += (float s) { return Vector2{ this->x += s, this->y += s }; }
-		Vector2 operator -= (float s) { return Vector2{ this->x -= s, this->y -= s }; }
-		Vector2 operator /= (float s) { return Vector2{ this->x /= s, this->y /= s }; }
-		Vector2 operator *= (float s) { return Vector2{ this->x *= s, this->y *= s }; }
+		//Assignment Operators
+		Vector2& operator += (const Vector2& v) { this->x += v.x, this->y += v.y; return *this; }
+		Vector2& operator -= (const Vector2& v) { this->x -= v.x, this->y -= v.y; return *this; }
+		Vector2& operator /= (const Vector2& v) { this->x /= v.x, this->y /= v.y; return *this; }
+		Vector2& operator *= (const Vector2& v) { this->x *= v.x, this->y *= v.y; return *this; }
+
+		Vector2& operator += (float s) { this->x += s, this->y += s; return *this; }
+		Vector2& operator -= (float s) { this->x -= s, this->y -= s; return *this; }
+		Vector2& operator /= (float s) { this->x /= s, this->y /= s; return *this; }
+		Vector2& operator *= (float s) { this->x *= s, this->y *= s; return *this; }
 
 		//Unary
 		//Vector2 = -Vector2
