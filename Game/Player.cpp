@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Engine.h"
 #include "Bullet.h"
+#include <iostream>
 
 void Player::Update()
 {
@@ -26,6 +27,8 @@ void Player::Update()
 	// Fire Bullet
 	if (Engine::inputSystem_g.onKeySpace(Engine::InputSystem::KeyState::Held))
 	{
+		Engine::audioSystem_g.PlayAudio("laser");
+
 		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(Engine::Model { "Bullet.txt" }, transform_);
 		scene_->Add(std::move(bullet));
 	}

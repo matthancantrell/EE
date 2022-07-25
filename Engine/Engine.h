@@ -11,9 +11,12 @@
 
 #include "Framework/Scene.h"
 
+#include "Audio/AudioSystem.h"
+
 namespace Engine
 {
 	extern InputSystem inputSystem_g;
 	extern Renderer renderer_g;
 	extern Time timer_g;
+	extern AudioSystem audioSystem_g;
 }

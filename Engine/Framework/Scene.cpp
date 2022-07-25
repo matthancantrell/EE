@@ -5,7 +5,6 @@ namespace Engine
 {
 	void Scene::Update()
 	{
-
 		auto iter = actors_.begin();
 		while (iter != actors_.end()) 
 		{

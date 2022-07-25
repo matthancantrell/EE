@@ -36,6 +36,9 @@ int main()
 	// Initialize Our Major Systems
 	Engine::renderer_g.Initialize();
 	Engine::inputSystem_g.Initialize();
+	Engine::audioSystem_g.Initialize();
+
+	Engine::audioSystem_g.AddAudio("laser", "jump.wav");
 
 	// Create A Window And Set Background Color
 	Engine::renderer_g.CreateWindow("Engine", 800, 600); // Creates the window with parameters
@@ -44,8 +47,11 @@ int main()
 	bool quit = false;
 	while (!quit)
 	{
+		//Engine::audioSystem_g.PlayAudio("laser");
+
 		// Update
 		Engine::inputSystem_g.Update();
+		Engine::audioSystem_g.Update();
 		Engine::timer_g.Tick();
 
 		//Keys
@@ -64,6 +70,6 @@ int main()
 
 		Engine::renderer_g.EndFrame();
 	}
-
+	Engine::audioSystem_g.ShutDown();
 	Engine::renderer_g.ShutDown();
 }
