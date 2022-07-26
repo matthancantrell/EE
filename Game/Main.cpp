@@ -47,7 +47,6 @@ int main()
 	bool quit = false;
 	while (!quit)
 	{
-		//Engine::audioSystem_g.PlayAudio("laser");
 
 		// Update
 		Engine::inputSystem_g.Update();
@@ -70,6 +69,7 @@ int main()
 
 		Engine::renderer_g.EndFrame();
 	}
+
 	Engine::audioSystem_g.ShutDown();
 	Engine::renderer_g.ShutDown();
 }

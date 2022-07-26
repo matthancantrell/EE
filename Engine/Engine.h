@@ -5,6 +5,8 @@
 
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
+//#include "Renderer/Font.h"
+//#include "Renderer/Text.h"
 
 #include "Math/MathUtils.h"
 #include "Math/Random.h"

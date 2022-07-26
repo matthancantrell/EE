@@ -1,16 +1,19 @@
 #include "Renderer.h"
 #include <SDL.h>
+#include <SDL_ttf.h>
 
 namespace Engine
 {
 	void Renderer::Initialize()
 	{
 		SDL_Init(SDL_INIT_VIDEO);
+		TTF_Init();
 	}
 	void Renderer::ShutDown() // Shutdown is often in opposite order of initialization
 	{
 		SDL_DestroyRenderer(renderer_);
 		SDL_DestroyWindow(window_);
+		TTF_Quit();
 	}
 	void Renderer::CreateWindow(const char* title, int width, int height)
 	{
