@@ -65,6 +65,9 @@
     <ClCompile Include="Renderer\Font.cpp">
       <Filter>Source\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer\Text.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\MathUtils.h">
@@ -116,6 +119,9 @@
       <Filter>Source\Audio</Filter>
     </ClInclude>
     <ClInclude Include="Renderer\Font.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Text.h">
       <Filter>Source\Renderer</Filter>
     </ClInclude>
   </ItemGroup>

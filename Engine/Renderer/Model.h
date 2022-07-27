@@ -18,10 +18,14 @@ namespace Engine
 
 		void Load(const std::string& filename);
 
+		float GetRadius() { return radius_; }
+		float CalculateRadius();
+
 	private:
 
 		Engine::Color color_;
 		std::vector<Engine::Vector2> points_;
+		float radius_ = 0;
 
 	};
 }

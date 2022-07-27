@@ -1,4 +1,6 @@
 #include "Bullet.h"
+#include "Player.h"
+#include "Enemy.h"
 #include "Engine.h"
 
 void Bullet::Update()
@@ -20,4 +22,10 @@ void Bullet::Update()
 
 	if (transform_.position.y > Engine::renderer_g.GetHeight_()) transform_.position.y = 0;
 	if (transform_.position.y < 0) transform_.position.y = (float)Engine::renderer_g.GetHeight_();
+}
+
+void Bullet::OnCollision(Actor* other)
+{
+	if (dynamic_cast<Player*>(other) && GetTag() != "Player") destroy_ = true;
+	if (dynamic_cast<Enemy*>(other) && GetTag() != "Enemy") destroy_ = true;
 }

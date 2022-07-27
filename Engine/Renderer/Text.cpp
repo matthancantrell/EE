@@ -1,7 +1,7 @@
 #include "Text.h"
-#include "Font.h" 
-#include "Renderer.h" 
-#include <SDL.h> 
+#include "../Math/Color.h"
+#include "Renderer.h"
+#include "../Renderer/Font.h"
 #include <SDL_ttf.h> 
 
 Engine::Text::~Text()

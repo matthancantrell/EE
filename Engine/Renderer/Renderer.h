@@ -33,7 +33,7 @@ namespace Engine
 		int GetWidth_() { return width_; }
 		int GetHeight_() { return height_; }
 
-		//friend class Text;
+		friend class Text;
 
 	private:
 		int width_ = 0;

@@ -8,6 +8,8 @@ namespace Engine
 		uint8_t r, g, b, a;
 
 		friend std::istream& operator >> (std::istream& stream, Color& color);
+
+		friend class Text;
 	};
 
 	inline std::istream& operator >> (std::istream& stream, Color& Color)

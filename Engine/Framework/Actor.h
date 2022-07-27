@@ -14,10 +14,15 @@ namespace Engine
 
 		virtual void Update() override {}
 		virtual void Draw(Renderer& renderer);
+
+		virtual void OnCollision(Actor* other) {}
+		float GetRadius() { return model_.GetRadius() * transform_.scale; }
+		std::string& GetTag() { return tag_; }
 		
 		friend class Scene;
 
 	protected:
+		std::string tag_;
 
 		// State
 		bool destroy_ = false;

@@ -25,11 +25,12 @@ void Player::Update()
 	}
 
 	// Fire Bullet
-	if (Engine::inputSystem_g.onKeySpace(Engine::InputSystem::KeyState::Held))
+	if (Engine::inputSystem_g.onKeySpace(Engine::InputSystem::KeyState::Pressed))
 	{
 		Engine::audioSystem_g.PlayAudio("laser");
 
 		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(Engine::Model { "Bullet.txt" }, transform_);
+		bullet->GetTag() = "Player";
 		scene_->Add(std::move(bullet));
 	}
 
@@ -70,4 +71,14 @@ void Player::Update()
 	if (transform_.position.y > Engine::renderer_g.GetHeight_()) transform_.position.y = 0;
 	if (transform_.position.y < 0) transform_.position.y = (float)Engine::renderer_g.GetHeight_();
 
+}
+
+void Player::OnCollision(Actor* other)
+{
+	if (dynamic_cast<Bullet*>(other) && other->GetTag() == "Enemy")
+	{
+		health_ -= dynamic_cast<Bullet*>(other)->GetDamage();
+
+		if (health_ <= 0) destroy_ = true;
+	}
 }

@@ -1,5 +1,4 @@
 #pragma once
-#include "../Math/Color.h"
 #include <string>
 
 struct SDL_Texture;
@@ -8,7 +7,8 @@ namespace Engine
 {
 	class Font;
 	class Renderer;
-	class Vector2;
+	struct Vector2;
+	struct Color;
 
 	class Text
 	{

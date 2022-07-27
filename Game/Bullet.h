@@ -5,12 +5,17 @@ class Bullet : public Engine::Actor
 {
 public:
 	Bullet() = default;
-	Bullet(const Engine::Model& model, const Engine::Transform& transform) :
-		Actor{ model, transform } {}
+	Bullet(const Engine::Model& model, const Engine::Transform& transform, float damage = 1.0f) :
+		Actor{ model, transform }, damage_ { damage } {}
 
 	void Update() override;
+	void OnCollision(Actor* other) override;
+
+	float GetDamage() { return damage_; }
 
 private:
+
+	float damage_ = 1.0f;
 	float speed_ = 200;
 	float lifespan_ = 5;
 };

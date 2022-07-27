@@ -19,6 +19,7 @@ void Enemy::Update()
 	{
 		fireTimer_ = Engine::RandomFloat(2, 6);
 		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(Engine::Model{ "Bullet.txt" }, transform_);
+		bullet->GetTag() = "Enemy";
 		scene_->Add(std::move(bullet));
 	}
 
@@ -45,4 +46,14 @@ void Enemy::Update()
 
 	if (transform_.position.y > Engine::renderer_g.GetHeight_()) transform_.position.y = 0;
 	if (transform_.position.y < 0) transform_.position.y = (float)Engine::renderer_g.GetHeight_();
+}
+
+void Enemy::OnCollision(Actor* other)
+{
+	if (dynamic_cast<Bullet*>(other) && other->GetTag() == "Player")
+	{
+		health_ -= dynamic_cast<Bullet*>(other)->GetDamage();
+
+		if(health_ <= 0) destroy_ = true;
+	}
 }

@@ -1,12 +1,7 @@
 #pragma once
 #include <string>
-#include <SDL_TTF.h>
 
-struct _TTF_FONT
-{
-	std::string font;
-	int fontsize;
-};
+struct _TTF_Font;
 
 namespace Engine
 {
@@ -19,7 +14,7 @@ namespace Engine
 
 		void Load(const std::string& filename, int fontsize);
 
-		// friend class Text;
+		friend class Text;
 
 	private:
 

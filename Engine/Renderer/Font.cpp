@@ -1,4 +1,5 @@
 #include "Font.h"
+#include <SDL_TTF.h>
 
 namespace Engine
 {
@@ -9,7 +10,7 @@ namespace Engine
 
 	Font::~Font()
 	{
-		if (ttfFont_ == NULL)
+		if (ttfFont_ != NULL)
 		{
 			TTF_CloseFont(ttfFont_);
 		}
