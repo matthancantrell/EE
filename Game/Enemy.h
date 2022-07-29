@@ -17,7 +17,7 @@ public:
 
 private:
 	float health_ = 2;
-	float speed_ = 50;
+	float speed_ = 150;
 	float fireTimer_ = 10;
 
 };

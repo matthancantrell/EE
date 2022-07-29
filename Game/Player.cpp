@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Engine.h"
 #include "Bullet.h"
+#include "Enemy.h"
 #include <iostream>
 
 void Player::Update()
@@ -27,9 +28,16 @@ void Player::Update()
 	// Fire Bullet
 	if (Engine::inputSystem_g.onKeySpace(Engine::InputSystem::KeyState::Pressed))
 	{
-		Engine::audioSystem_g.PlayAudio("laser");
+		std::unique_ptr<Bullet> rocket = std::make_unique<Bullet>(Engine::Model { "Rocket.txt" }, transform_);
+		rocket->speed_ = 400;
+		rocket->GetTag() = "Player";
+		scene_->Add(std::move(rocket));
+	}
 
-		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(Engine::Model { "Bullet.txt" }, transform_);
+	if (Engine::inputSystem_g.onKeyShift(Engine::InputSystem::KeyState::Pressed))
+	{
+		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(Engine::Model{ "Bullet.txt" }, transform_);
+		bullet->speed_ = 200;
 		bullet->GetTag() = "Player";
 		scene_->Add(std::move(bullet));
 	}
@@ -78,7 +86,6 @@ void Player::OnCollision(Actor* other)
 	if (dynamic_cast<Bullet*>(other) && other->GetTag() == "Enemy")
 	{
 		health_ -= dynamic_cast<Bullet*>(other)->GetDamage();
-
 		if (health_ <= 0) destroy_ = true;
 	}
 }

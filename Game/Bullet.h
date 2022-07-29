@@ -13,9 +13,11 @@ public:
 
 	float GetDamage() { return damage_; }
 
-private:
-
-	float damage_ = 1.0f;
 	float speed_ = 200;
+
+private:
+	std::string bulletType_;
+	float damage_ = 1.0f;
+	
 	float lifespan_ = 5;
 };

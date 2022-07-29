@@ -12,7 +12,10 @@ namespace Engine
 
 		Model() = default;
 		Model(const std::vector<Engine::Vector2>& points, const Engine::Color& color) : points_{ points }, color_{ color } {}
-		Model(const std::string& filename);
+		Model(const std::string& filename) {
+			Load(filename);
+			radius_ = CalculateRadius();
+		}
 
 		void Draw(Renderer& renderer, const Vector2& position, float angle, float scale);
 

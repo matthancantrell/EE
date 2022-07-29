@@ -13,7 +13,7 @@ void Enemy::Update()
 {
 
 	// Fire Weapon
-
+/*
 	fireTimer_ -= Engine::timer_g.deltaTime;
 	if (fireTimer_ <= 0)
 	{
@@ -21,7 +21,9 @@ void Enemy::Update()
 		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(Engine::Model{ "Bullet.txt" }, transform_);
 		bullet->GetTag() = "Enemy";
 		scene_->Add(std::move(bullet));
+
 	}
+*/
 
 	// Set Rotation Towards Player
 	Player* player = scene_->GetActor<Player>();
@@ -53,7 +55,10 @@ void Enemy::OnCollision(Actor* other)
 	if (dynamic_cast<Bullet*>(other) && other->GetTag() == "Player")
 	{
 		health_ -= dynamic_cast<Bullet*>(other)->GetDamage();
-
-		if(health_ <= 0) destroy_ = true;
+		if (health_ <= 0)
+		{
+			destroy_ = true;
+			Engine::audioSystem_g.PlayAudio("explosion");
+		}
 	}
 }

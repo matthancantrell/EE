@@ -45,6 +45,7 @@ namespace Engine
 
 		bool onKeyEsc(Engine::InputSystem::KeyState state);
 		bool onKeySpace(Engine::InputSystem::KeyState state);
+		bool onKeyShift(Engine::InputSystem::KeyState state);
 
 	private:
 
@@ -60,6 +61,7 @@ namespace Engine
 
 	extern const uint32_t key_space;
 	extern const uint32_t key_esc;
+	extern const uint32_t key_shift;
 
 	extern const uint32_t key_up;
 	extern const uint32_t key_down;

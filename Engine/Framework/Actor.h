@@ -1,10 +1,12 @@
 #pragma once
 #include "GameObject.h"
 #include "../Renderer/Model.h"
+#include "Game.h"
 
 namespace Engine
 {
 	class Scene;
+	class Game;
 
 	class Actor : public GameObject
 	{
@@ -21,11 +23,12 @@ namespace Engine
 		
 		friend class Scene;
 
-	protected:
-		std::string tag_;
-
 		// State
 		bool destroy_ = false;
+
+	protected:
+
+		std::string tag_;
 
 		// Physics
 		Vector2 velocity_;
@@ -34,5 +37,6 @@ namespace Engine
 		// Object
 		Scene* scene_ = nullptr;
 		Model model_;
+
 	};
 }

@@ -48,17 +48,11 @@ namespace Engine
 		float radius = 0;
 
 		// Find Largest Length
-		for (auto& point : points_)
+		for (auto point : points_)
 		{
 			if (point.Length() > radius) radius = point.Length();
 		}
 
 		return radius;
-	}
-
-	Model::Model(const std::string& filename)
-	{
-		Load(filename);
-		radius_ = CalculateRadius();
 	}
 }

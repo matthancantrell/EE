@@ -6,6 +6,7 @@ namespace Engine
 {
 	const uint32_t key_space = SDL_SCANCODE_SPACE;
 	const uint32_t key_esc = SDL_SCANCODE_ESCAPE;
+	const uint32_t key_shift = SDL_SCANCODE_LSHIFT;
 
 	const uint32_t key_up = SDL_SCANCODE_UP;
 	const uint32_t key_down = SDL_SCANCODE_DOWN;
@@ -146,6 +147,12 @@ namespace Engine
 	bool InputSystem::onKeySpace(Engine::InputSystem::KeyState state)
 	{
 		if (GetKeyState(key_space) == state) return true;
+		else return false;
+	}
+
+	bool InputSystem::onKeyShift(Engine::InputSystem::KeyState state)
+	{
+		if (GetKeyState(key_shift) == state) return true;
 		else return false;
 	}
 

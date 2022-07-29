@@ -11,12 +11,11 @@ public:
 	void Update() override;
 	void OnCollision(Actor* other) override;
 
-	float GetHealth() { return health_; }
-
-private:
-	
 	float health_{ 10 };
 
+private:	
+
+	float score_{ 00000 };
 	float speed_{ 0 };
 	float maxSpeed_{ 500 };
 };

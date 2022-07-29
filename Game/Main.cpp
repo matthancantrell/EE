@@ -1,39 +1,20 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Engine.h"
+#include "SpaceRacer.h"
 
 using namespace std;
 // DEPENDENCIES
 
 int main()
 {
-	//Memory Init
+	// Initialize Memory and Declare Filepath
+
 	Engine::InitializeMemory();
-
-	// Set File Path to Pull Models
 	Engine::SetFilePath("../Assets");
-	
-	Engine::Scene scene;
 
-	// Create Actor
-	// Transform
-	Engine::Transform transform;
-	transform.position = { 400, 300 };
-	transform.rotation = 0;
-	transform.scale = 5;
-
-	std::unique_ptr<Player> player = std::make_unique<Player>(Engine::Model{ "Player.txt" }, transform);
-	scene.Add(std::move(player));
-
-/*	for (size_t i = 0; i < 1; i++)
-	{
-		transform.position.x = Engine::RandomFloat(800);
-		transform.position.y = Engine::RandomFloat(600);
-		std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(Engine::Model { "Enemy.txt" }, transform);
-		scene.Add(std::move(enemy));
-	}
-*/
 	// Initialize Our Major Systems
+
 	Engine::renderer_g.Initialize();
 	Engine::inputSystem_g.Initialize();
 	Engine::audioSystem_g.Initialize();
@@ -42,17 +23,11 @@ int main()
 
 	// Create A Window And Set Background Color
 	Engine::renderer_g.CreateWindow("Engine", 800, 600); // Creates the window with parameters
-	Engine::renderer_g.SetClearColor(Engine::Color{ 50, 50, 50, 255 });
+	Engine::renderer_g.SetClearColor(Engine::Color{ 0, 0, 0, 255 });
 
-	Engine::Font* font = new Engine::Font("Fonts/shovel-knight-extended.ttf", 24);
-
-	Engine::Text title(font);
-	title.Create(Engine::renderer_g, "TITLE", { 0, 0, 255, 255 } );
-
-	Engine::Text health(font);
-	health.Create(Engine::renderer_g, "Health: ", { 0, 0, 255, 255 } );
-
-	float spawnTimer = 2;
+	// Setting Up The Game Itself
+	SpaceRacer game;
+	game.Initialize();
 
 	bool quit = false;
 	while (!quit)
@@ -63,36 +38,19 @@ int main()
 		Engine::audioSystem_g.Update();
 		Engine::timer_g.Tick();
 
-		if (Engine::inputSystem_g.onKeyEsc(Engine::InputSystem::KeyState::Pressed))
-		{
-			quit = true;
-		}
+		if (Engine::inputSystem_g.onKeyEsc(Engine::InputSystem::KeyState::Pressed)) quit = true;
 
-/*		// Spawn Enemies
-		spawnTimer -= Engine::timer_g.deltaTime;
-		if (spawnTimer <= 0)
-		{
-			spawnTimer = 2;
-			transform.position.x = Engine::RandomFloat(800);
-			transform.position.y = Engine::RandomFloat(600);
-			std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(Engine::Model{ "Enemy.txt" }, transform);
-			scene.Add(std::move(enemy));
-		}
-*/
-		//Update Game Objects
-		scene.Update();
+		game.Update();
 
 		// Render
 		Engine::renderer_g.BeginFrame();
 
-		title.Draw(Engine::renderer_g, { 0, 15 } );
-		health.Draw(Engine::renderer_g, { 500, 15 });
-		scene.Draw(Engine::renderer_g);
+			game.Draw(Engine::renderer_g);
 
 		Engine::renderer_g.EndFrame();
 	}
 
-	delete font;
+
 	Engine::audioSystem_g.ShutDown();
 	Engine::renderer_g.ShutDown();
 }

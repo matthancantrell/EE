@@ -27,6 +27,12 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="SpaceRacer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUp.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -36,6 +42,12 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceRacer.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUp.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
